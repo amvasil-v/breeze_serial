@@ -27,13 +27,26 @@ private slots:
     void slot_tcp_ready_read();
     void slot_tcp_disconnected();
 
+    void on_actionClear_triggered();
+
+    void on_actionCWJAP_triggered();
+
+    void on_actionCIPCLOSE_triggered();
+
+    void on_actionATE0_triggered();
+
+    void on_actionATE1_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort port;
     QTcpServer server;
     QTcpSocket *socket;
+    size_t total_sent;
 
-    void writeToSerial(QString& data);
+    void writeToSerial(const QByteArray& data);
+
+    static QString rawToString(const QByteArray& data);
 
 };
 #endif // MAINWINDOW_H
